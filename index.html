@@ -1,58 +1,37 @@
 <html>
-<head>
-    <title>IsoSurvive!</title>
-    <style>
-        body 
-        {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-        }
-    </style>
-    <script src="bin/pixi.js"></script>
-</head>
-<body>
-    <script>
- 
-		// create an new instance of a pixi stage
-		// stage = root of display tree
-		var stage = new PIXI.Stage(0x66FF99);
-	 
-		// create a renderer instance.
-		// will render our stage
-		var renderer = PIXI.autoDetectRenderer(400, 300);
-	 
-		// add the renderer view element to the DOM
-		document.body.appendChild(renderer.view);
-	 
-		requestAnimFrame( animate );
+
+	<head>
+		<title>IsoSurvive</title>
+	</head>
+	
+	<body onload="init();">
+	
+		<div align="center">
+			<canvas id = "gameCanvas" width = "320" height="240"></canvas>
+		</div>
 		
-		// create a texture from an image path
-		var texture = PIXI.Texture.fromImage("s.png");
-		// create a new Sprite using the texture
-		var bunny = new PIXI.Sprite(texture);
-	 
-		// center the sprites anchor point
-		bunny.anchor.x = 0.5;
-		bunny.anchor.y = 0.5;
-	 
-		// move the sprite t the center of the screen
-		bunny.position.x = 200;
-		bunny.position.y = 150;
-	 
-		stage.addChild(bunny);
-		
-		function animate() {
-	 
-			requestAnimFrame( animate );
-	 
-			// render the stage   
-			renderer.render(stage);
+		<script src="bin/pixi.js"></script>
 			
-			bunny.rotation += 0.1;
-		}
- 
-    </script>
- 
-    </body>
+		<script>
+
+			/*global PIXI*/
+			
+			var stage;
+			var renderer;
+			var renderTexture;
+			
+			function init()
+			{
+				// initialize stage and renderer
+				stage = new PIXI.Stage(0x000000);
+				renderer = PIXI.autoDetectRenderer(640, 480, document.getElementById("gameCanvas")); // need to scale correctly (whole num then extend screen)
+				
+				// tell renderer to render stage
+				renderer.render(stage);
+			}
+			
+		</script>
+		
+	</body>
+	
 </html>
